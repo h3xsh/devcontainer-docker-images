@@ -4,7 +4,7 @@ export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 export LS_COLORS="di=34:ln=36:so=35:pi=33:ex=91:bd=43;33:cd=45;33:su=37;41:sg=30;43:tw=30;42:ow=34;42:*.gz=95:*.zip=91:*.jpg=93:*.mp4=96:*.mp3=92:*.txt=32"
 export GPG_TTY=$(tty)
-
+export PATH=/home/dev/.local/bin:$PATH
 
 setopt APPEND_HISTORY          # Append history to file, don’t overwrite
 setopt INC_APPEND_HISTORY      # Add commands to the history file as they are entered
@@ -110,10 +110,56 @@ if [ -n "$force_color_prompt" ]; then
     fi
 fi
 
+# Terminal-compatible git status for prompt
+git_status_info() {
+  command -v git >/dev/null 2>&1 || return
+
+  if ! $(git rev-parse --is-inside-work-tree >/dev/null 2>&1); then
+    return
+  fi
+
+  local ref
+  ref=$(git symbolic-ref HEAD 2>/dev/null) || ref="detached"
+  local branch_name="${ref#refs/heads/}"
+  
+  local git_info="%F{yellow}%B%U$branch_name%u%b "
+  
+  local git_status="$(git status --porcelain 2>/dev/null)"
+  
+  local staged=$(echo "$git_status" | grep -c "^[MADRC]")
+  local unstaged=$(echo "$git_status" | grep -c "^.[MADRC]")
+  local untracked=$(echo "$git_status" | grep -c "^\?\?")
+  
+  [[ $staged -gt 0 ]] && git_info+="%F{green}%B+$staged%b "
+  [[ $unstaged -gt 0 ]] && git_info+="%F{red}%B!$unstaged%b "
+  [[ $untracked -gt 0 ]] && git_info+="%F{blue}%B?$untracked%b "
+  
+  local remote=$(git rev-parse --abbrev-ref @{upstream} 2>/dev/null)
+  if [[ -n "$remote" ]]; then
+    local ahead=$(git rev-list ${remote}..HEAD 2>/dev/null | wc -l | tr -d ' ')
+    local behind=$(git rev-list HEAD..${remote} 2>/dev/null | wc -l | tr -d ' ')
+    
+    if [[ $ahead -gt 0 && $behind -gt 0 ]]; then
+      git_info+="%F{magenta}%B<>%b "
+    elif [[ $ahead -gt 0 ]]; then
+      git_info+="%F{cyan}%B^$ahead%b "
+    elif [[ $behind -gt 0 ]]; then
+      git_info+="%F{cyan}%Bv$behind%b "
+    fi
+  fi
+  
+  if [[ $staged -eq 0 && $unstaged -eq 0 && $untracked -eq 0 ]]; then
+    git_info+="%F{green}%B=%b "
+  fi
+  
+  echo "$git_info"
+}
+
+
 configure_prompt() {
     prompt_symbol=@
-    PROMPT=$'%F{%(#.blue.green)} >> %B%F{%(#.red.blue)}%n'$prompt_symbol$'%m%b%F{%(#.blue.green)}-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}] %B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
-
+    setopt PROMPT_SUBST
+    PROMPT='%F{%(#.blue.green)} >> %B%F{%(#.red.blue)}%n'$prompt_symbol'%m%b%F{%(#.blue.green)}-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}] $(git_status_info)%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
     unset prompt_symbol
 }
 
@@ -233,6 +279,35 @@ if [ -f /etc/zsh_command_not_found ]; then
     . /etc/zsh_command_not_found
 fi
 
+## needed to load the sshkeys on shell start
+if [ -z "$SSH_AUTH_SOCK" ]; then
+  eval $(ssh-agent -s) > /dev/null
+  
+  # Add all your private keys from ~/.ssh
+  for key in ~/.ssh/*; do
+    if [[ -f "$key" && ! "$key" =~ \.pub$ ]]; then
+      ssh-add "$key" 2>/dev/null
+    fi
+  done
+fi
 
 ## custom script may be handy
 source $HOME/scripts/git-set-config.sh
+
+
+## custom aliases 
+
+# alias ..='cd ..'
+# alias ...='cd ../..'
+# alias ....='cd ../../..'
+# alias ~='cd ~'
+
+alias g='git'
+alias gs='git status'
+alias ga='git add'
+alias gaa='git add --all'
+alias gc='git commit -m'
+alias gps='git push'
+alias gpl='git pull'
+alias glog='git log --oneline --decorate --graph'
+alias gloga='git log --oneline --decorate --graph --all'
