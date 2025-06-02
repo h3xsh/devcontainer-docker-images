@@ -30,7 +30,7 @@ if [ -f /usr/share/zsh-autosuggestions/zsh-autosuggestions.zsh ]; then
     ZSH_AUTOSUGGEST_MANUAL_REBIND=1
 fi
 # hide EOL sign ('%')
-PROMPT_EOL_MARK=">> "
+PROMPT_EOL_MARK=""
 
 bindkey -e
 bindkey '^n' history-search-forward
