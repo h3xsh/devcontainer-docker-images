@@ -6,6 +6,12 @@ SETTINGS_DIR="${WORKSPACES_VSCODE_DIR}/data/Machine"
 USER_DATA_DIR="${WORKSPACES_VSCODE_DIR}/data/User"
 EXTENSIONS_DIR="${WORKSPACES_VSCODE_DIR}/extensions"
 
+if [ ! -d "/workspaces" ]; then
+    echo "Creating /workspaces directory..."
+    sudo mkdir -p /workspaces
+    sudo chown -R dev:dev /workspaces
+fi
+
 # Create directories if they don't exist
 mkdir -p "${SETTINGS_DIR}" "${USER_DATA_DIR}" "${EXTENSIONS_DIR}"
 
@@ -41,6 +47,6 @@ if [ -f "$VSCODE_WEB" ]; then
 fi
 
 # Set proper ownership
-chown -R dev:dev "${WORKSPACES_VSCODE_DIR}"
+chown -R $(whoami):$(whoami) "${WORKSPACES_VSCODE_DIR}" 2>/dev/null || true
 
 echo "VS Code initialization complete in ${WORKSPACES_VSCODE_DIR}"
