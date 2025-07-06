@@ -1,15 +1,115 @@
 {
     "workbench.colorTheme": "tvdotdev-dark",
     "workbench.startupEditor": "none",
-    "window.dialogStyle": "custom",
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.labelFormat": "short",
+    "workbench.tree.indent": 16,
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.sideBar.location": "right",
+    "workbench.list.smoothScrolling": true,
+    "workbench.editor.untitled.hint": "hidden",
+    "workbench.panel.defaultLocation": "bottom",
+    "workbench.panel.opensMaximized": "never",
+    "workbench.editor.highlightModifiedTabs": true,
+    "workbench.colorCustomizations": {
+        "editorIndentGuide.activeBackground1": "#5a5a5a"
+    },
+    "breadcrumbs.enabled": true,
+    "window.title": "${dirty}${activeEditorShort}${separator}${rootName}",
     "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "editor.formatOnType": true,
+    "editor.minimap.enabled": true,
+    "editor.minimap.renderCharacters": false,
+    "editor.minimap.maxColumn": 80,
+    "editor.minimap.showSlider": "mouseover",
+    "editor.renderWhitespace": "boundary",
+    "editor.cursorBlinking": "expand",
+    "editor.cursorSmoothCaretAnimation": "on",
+    "editor.smoothScrolling": true,
+    "editor.wordWrap": "on",
+    "editor.rulers": [
+        80,
+        120
+    ],
+    "editor.bracketPairColorization.enabled": true,
+    "editor.guides.bracketPairs": "active",
+    "editor.guides.indentation": true,
+    "editor.guides.highlightActiveIndentation": true,
+    "editor.stickyScroll.enabled": true,
+    "editor.linkedEditing": true,
+    "editor.inlineSuggest.enabled": true,
+    "editor.suggest.insertMode": "replace",
+    "editor.suggestSelection": "first",
+    "editor.acceptSuggestionOnCommitCharacter": true,
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": true,
+        "strings": true
+    },
+    "editor.fontLigatures": true,
+    "editor.fontSize": 14,
+    "editor.lineHeight": 24,
+    "editor.tabSize": 2,
+    "editor.detectIndentation": true,
+    "editor.codeActionsOnSave": {
+        "source.fixAll": "always",
+        "source.organizeImports": "always",
+        "source.sortImports": "always"
+    },
+    "editor.snippetSuggestions": "top",
+    "editor.unicodeHighlight.ambiguousCharacters": false,
+    "editor.accessibilitySupport": "off",
+    "editor.stickyTabStops": true,
+    "editor.find.autoFindInSelection": "multiline",
     "files.autoSave": "afterDelay",
     "files.autoSaveDelay": 100,
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.trimFinalNewlines": true,
+    "files.eol": "\n",
+    "files.exclude": {
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/Thumbs.db": true,
+        "**/node_modules": true,
+        "**/.idea": true,
+        "**/.vscode": false
+    },
+    "files.watcherExclude": {
+        "**/.git/objects/**": true,
+        "**/.git/subtree-cache/**": true,
+        "**/node_modules/**": true,
+        "**/.hg/store/**": true,
+        "**/dist/**": true,
+        "**/build/**": true,
+        "**/.next/**": true
+    },
+    "files.associations": {
+        "*.jsx": "javascriptreact",
+        "*.tsx": "typescriptreact",
+        "*.mdx": "markdown",
+        "*.json5": "jsonc",
+        "*.env.*": "dotenv"
+    },
+    "terminal.integrated.showOnStartup": true,
     "terminal.integrated.defaultProfile.linux": "zsh",
     "terminal.integrated.copyOnSelection": true,
-    "terminal.integrated.enableMultiLinePasteWarning": false,
+    "terminal.integrated.enableMultiLinePasteWarning": "always",
     "terminal.integrated.defaultLocation": "view",
     "terminal.integrated.sendKeybindingsToShell": true,
+    "terminal.integrated.cursorStyle": "line",
+    "terminal.integrated.fontSize": 14,
+    "terminal.integrated.fontFamily": "'JetBrains Mono', 'Fira Code', monospace",
+    "terminal.integrated.shellIntegration.enabled": true,
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.scrollback": 10000,
+    "terminal.integrated.fastScrollSensitivity": 8,
+    "terminal.integrated.gpuAcceleration": "auto",
     "security.workspace.trust.enabled": false,
     "security.workspace.trust.startupPrompt": "never",
     "security.workspace.trust.untrustedFiles": "open",
@@ -21,48 +121,43 @@
     ],
     "explorer.confirmDelete": false,
     "explorer.confirmDragAndDrop": false,
-    "update.showReleaseNotes": false,
-    "telemetry.telemetryLevel": "off",
-    "workbench.editor.untitled.hint": "hidden",
-    "window.restoreWindows": "none",
-    "editor.minimap.enabled": true,
-    "editor.minimap.renderCharacters": false,
-    "editor.minimap.maxColumn": 80,
-    "editor.minimap.showSlider": "mouseover",
-    "editor.renderWhitespace": "boundary",
-    "editor.cursorBlinking": "expand",
-    "editor.smoothScrolling": true,
-    "editor.rulers": [
-        80,
-        120
-    ],
-    "editor.bracketPairColorization.enabled": true,
-    "editor.guides.bracketPairs": "active",
-    "editor.stickyScroll.enabled": true,
-    "editor.linkedEditing": true,
-    "editor.inlineSuggest.enabled": true,
-    "editor.suggest.insertMode": "replace",
-    "editor.formatOnType": true,
-    "git.autofetch": true,
-    "git.confirmSync": false,
-    "git.enableSmartCommit": true,
     "explorer.autoReveal": true,
     "explorer.sortOrder": "type",
     "explorer.compactFolders": false,
     "search.showLineNumbers": true,
     "search.smartCase": true,
-    "terminal.integrated.cursorStyle": "line",
-    "terminal.integrated.fontSize": 14,
-    "terminal.integrated.shellIntegration.enabled": true,
-    "workbench.panel.defaultLocation": "bottom",
-    "terminal.integrated.autoRevealOnStartup": true,
-    "workbench.panel.opensMaximized": "never",
-    "files.watcherExclude": {
-        "**/.git/objects/**": true,
-        "**/.git/subtree-cache/**": true,
-        "**/node_modules/**": true,
-        "**/.hg/store/**": true
+    "search.exclude": {
+        "**/node_modules": true,
+        "**/bower_components": true,
+        "**/dist": true,
+        "**/build": true,
+        "**/.git": true
     },
+    "search.useGlobalIgnoreFiles": true,
+    "search.useIgnoreFiles": true,
+    "update.showReleaseNotes": false,
+    "telemetry.telemetryLevel": "off",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "diffEditor.renderSideBySide": true,
+    "problems.showCurrentInStatus": true,
+    "debug.console.fontSize": 14,
+    "debug.inlineValues": "auto",
+    "debug.toolBarLocation": "docked",
+    "git.autofetch": true,
+    "git.confirmSync": false,
+    "git.enableSmartCommit": true,
+    "git.untrackedChanges": "separate",
+    "git.showPushSuccessNotification": true,
+    "git.inputValidation": true,
+    "git.timeline.date": "committed",
+    "git.pullBeforeCheckout": true,
+    "git.openDiffOnClick": true,
+    "git.mergeEditor": true,
+    "gitlens.codeLens.enabled": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "javascript.suggest.completeFunctionCalls": true,
+    "typescript.suggest.completeFunctionCalls": true,
     "go.toolsManagement.autoUpdate": true,
     "go.useLanguageServer": true,
     "go.formatTool": "goimports",
@@ -79,5 +174,146 @@
         "maxArrayValues": 64,
         "maxVariableRecurse": 1,
         "showGlobalVariables": false
-    }
+    },
+    "go.lintOnSave": "package",
+    "go.vetOnSave": "package",
+    "go.testOnSave": false,
+    "go.addTags": {
+        "tags": "json",
+        "options": "json=omitempty",
+        "promptForTags": true
+    },
+    "[javascript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.suggestSelection": "recentlyUsed",
+        "editor.tabSize": 2
+    },
+    "[typescript]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.suggestSelection": "recentlyUsed",
+        "editor.tabSize": 2
+    },
+    "[javascriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[typescriptreact]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "javascript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "typescript.format.insertSpaceAfterOpeningAndBeforeClosingNonemptyBraces": true,
+    "javascript.preferences.quoteStyle": "single",
+    "typescript.preferences.quoteStyle": "single",
+    "javascript.preferences.importModuleSpecifier": "relative",
+    "typescript.preferences.importModuleSpecifier": "relative",
+    "eslint.validate": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
+    "eslint.alwaysShowStatus": true,
+    "eslint.format.enable": true,
+    "eslint.codeActionsOnSave.rules": null,
+    "[json]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.tabSize": 2
+    },
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features",
+        "editor.tabSize": 2
+    },
+    "json.schemas": [],
+    "csv-preview.separator": ",",
+    "csv-preview.resizeColumns": true,
+    "csv-preview.theme": "dark",
+    "csv-preview.lineNumbers": "ordinal",
+    "csv-preview.formatValues": "en-US",
+    "[php]": {
+        "editor.defaultFormatter": "bmewburn.vscode-intelephense-client",
+        "editor.tabSize": 4
+    },
+    "php.validate.enable": true,
+    "php.suggest.basic": true,
+    "php.validate.executablePath": "/usr/bin/php",
+    "php.format.codeStyle": "PSR-12",
+    "[python]": {
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true,
+        "editor.tabSize": 4
+    },
+    "python.linting.enabled": true,
+    "python.linting.pylintEnabled": true,
+    "python.linting.flake8Enabled": true,
+    "python.formatting.provider": "black",
+    "python.formatting.blackArgs": [
+        "--line-length",
+        "88"
+    ],
+    "python.linting.mypyEnabled": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.autoImportCompletions": true,
+    "python.testing.pytestEnabled": true,
+    "python.terminal.activateEnvironment": true,
+    "python.defaultInterpreterPath": "/usr/bin/python3",
+    "[rust]": {
+        "editor.defaultFormatter": "rust-lang.rust-analyzer",
+        "editor.tabSize": 4
+    },
+    "rust-analyzer.checkOnSave.command": "clippy",
+    "rust-analyzer.checkOnSave.extraArgs": [
+        "--",
+        "-W",
+        "clippy::all"
+    ],
+    "rust-analyzer.diagnostics.disabled": [
+        "unresolved-import"
+    ],
+    "rust-analyzer.cargo.loadOutDirsFromCheck": true,
+    "rust-analyzer.procMacro.enable": true,
+    "rust-analyzer.updates.channel": "stable",
+    "[html]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[css]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[scss]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[less]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.tabSize": 2
+    },
+    "[markdown]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "editor.wordWrap": "on",
+        "editor.suggestSelection": "recentlyUsed"
+    },
+    "markdown.preview.breaks": true,
+    "markdown.extension.toc.levels": "2..6",
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml",
+        "editor.tabSize": 2
+    },
+    "yaml.format.enable": true,
+    "yaml.validate": true,
+    "yaml.schemas": {},
+    "[dockerfile]": {
+        "editor.defaultFormatter": "ms-azuretools.vscode-docker",
+        "editor.formatOnSave": true
+    },
+    "cSpell.enabled": true,
+    "cSpell.language": "en",
+    "cSpell.diagnosticLevel": "Hint",
+    "prettier.singleQuote": true,
+    "prettier.trailingComma": "es5",
+    "prettier.printWidth": 100,
+    "prettier.tabWidth": 2,
+    "prettier.semi": true,
+    "prettier.arrowParens": "avoid"
 }

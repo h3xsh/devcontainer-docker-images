@@ -1,5 +1,4 @@
 #!/bin/bash
-# Initialize VS Code settings and extensions in persistent storage
 
 WORKSPACES_VSCODE_DIR="/workspaces/.vscode-server"
 SETTINGS_DIR="${WORKSPACES_VSCODE_DIR}/data/Machine"
@@ -12,14 +11,10 @@ if [ ! -d "/workspaces" ]; then
     sudo chown -R dev:dev /workspaces
 fi
 
-# Create directories if they don't exist
 mkdir -p "${SETTINGS_DIR}" "${USER_DATA_DIR}" "${EXTENSIONS_DIR}"
 
-# Copy default settings if they don't exist
-if [ ! -f "${SETTINGS_DIR}/settings.json" ]; then
-    echo "Initializing VS Code settings in persistent storage..."
-    cp /opt/vscode-settings-template/settings.json "${SETTINGS_DIR}/settings.json"
-fi
+echo "Initializing VS Code settings in persistent storage..."
+cp -f /opt/vscode-settings-template/settings.json "${SETTINGS_DIR}/settings.json"
 
 # Install Go extensions if not already installed
 VSCODE_WEB="/opt/vscode-web/bin/code-server"
