@@ -159,7 +159,7 @@ git_status_info() {
 configure_prompt() {
     prompt_symbol=@
     setopt PROMPT_SUBST
-    PROMPT='%F{%(#.blue.green)} >> %B%F{%(#.red.blue)}%n'$prompt_symbol'%m%b%F{%(#.blue.green)}-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}] $(git_status_info)%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
+    PROMPT='%F{%(#.blue.green)} >> %B%F{%(#.red.blue)}%n'$prompt_symbol'%m%b%F{%(#.blue.green)}-[%B%F{reset}%(6~.%-1~/…/%4~.%5~)%b%F{%(#.blue.green)}] $(git_status_info)'$'\n''%B%(#.%F{red}#.%F{blue}$)%b%F{reset} '
     unset prompt_symbol
 }
 
