@@ -163,7 +163,7 @@ configure_prompt() {
     unset prompt_symbol
 }
 
-NEWLINE_BEFORE_PROMPT=yes
+NEWLINE_BEFORE_PROMPT=no
 
 if [ "$color_prompt" = yes ]; then
     # override default virtualenv indicator in prompt
