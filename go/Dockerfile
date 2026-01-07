@@ -2,7 +2,7 @@ FROM h3xsh/image:base
 
 USER root
 
-ENV GO_VERSION=1.24.1
+ENV GO_VERSION=1.25.5
 
 RUN wget -q https://golang.org/dl/go${GO_VERSION}.linux-amd64.tar.gz \
     && tar -C /usr/local -xzf go${GO_VERSION}.linux-amd64.tar.gz \
