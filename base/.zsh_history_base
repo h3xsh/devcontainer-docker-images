@@ -1,0 +1,156 @@
+# Git (your most frequent)
+git status
+git add .
+git add --all
+git commit -m "fix: "
+git push
+git pull
+git log --oneline --decorate --graph
+git log --oneline --decorate --graph --all
+git checkout -b feature/
+git checkout main
+git merge --no-ff
+git rebase -i HEAD~3
+git stash
+git stash pop
+git diff
+git diff --staged
+git reset --soft HEAD~1
+git fetch --all
+git branch -d
+git remote -v
+
+# Docker
+docker ps
+docker ps -a
+docker images
+docker compose up -d
+docker compose down
+docker compose logs -f
+docker compose build
+docker exec -it /bin/sh
+docker logs -f
+docker stop $(docker ps -q)
+docker system prune -af
+docker volume ls
+docker network ls
+
+# AWS CDK/CloudFormation
+cdk deploy
+cdk deploy --all
+cdk diff
+cdk synth
+cdk bootstrap
+cdk destroy
+aws cloudformation describe-stacks
+aws lambda invoke
+aws logs tail --follow
+aws s3 ls
+aws s3 cp
+aws sts get-caller-identity
+
+# Node/npm
+npm install
+npm run build
+npm run dev
+npm run test
+npm ci
+npm update
+npm outdated
+npm audit
+npx tsc --noEmit
+
+# Go
+go run .
+go build
+go test ./...
+go mod tidy
+go mod download
+go fmt ./...
+go vet ./...
+
+# File operations
+ls -la
+ll
+la
+cd ..
+cd -
+pwd
+mkdir -p
+rm -rf
+cp -r
+mv
+cat
+less
+head -n 20
+tail -f
+find . -name "*.go"
+grep -r "TODO" .
+grep -rn
+wc -l
+
+# Editors/tools
+vim
+code .
+claude
+
+# System
+htop
+df -h
+du -sh *
+free -h
+ps aux
+kill -9
+chmod +x
+chown -R
+ln -s
+which
+whereis
+env
+export
+source ~/.zshrc
+
+# Network
+curl -v
+curl -X POST -H "Content-Type: application/json"
+wget
+ping
+nc -zv
+ss -tulpn
+ip a
+
+# Zsh/shell
+history
+!!
+!$
+clear
+exit
+echo $PATH
+printenv
+
+# Traefik/infra
+traefik
+systemctl status
+systemctl restart
+journalctl -u -f
+nginx -t
+certbot renew
+
+# FFmpeg (for YouTube content)
+ffmpeg -i
+ffprobe
+
+# Misc dev
+make
+make build
+make test
+jq .
+yq
+sed -i
+awk
+xargs
+tar -xzf
+unzip
+ssh
+scp
+rsync -avz

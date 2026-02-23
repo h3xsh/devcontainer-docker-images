@@ -32,25 +32,30 @@ fi
 # hide EOL sign ('%')
 PROMPT_EOL_MARK=""
 
-bindkey -e
-bindkey '^n' history-search-forward
 
-bindkey '^[b' backward-word      # Alt+b for backward word
-bindkey '^[f' forward-word       # Alt+f for forward word
+bindkey -v
+export KEYTIMEOUT=1
 
-bindkey '^A' beginning-of-line  # Ctrl+A for start of line
-bindkey '^E' end-of-line        # Ctrl+E for end of line
-bindkey '^K' kill-line          # Ctrl+K to delete to end of line
-bindkey '^U' kill-whole-line    # Ctrl+U to delete entire line
-bindkey '^W' backward-kill-word # Ctrl+W to delete previous word
 
-bindkey '^P' up-line-or-history      # Ctrl+P for previous command
-bindkey '^N' down-line-or-history    # Ctrl+N for next command
-bindkey '^R' history-incremental-search-backward # Ctrl+R for history search
+# Keep Ctrl+R for history search
+bindkey -M viins '^R' history-incremental-search-backward
 
-bindkey '^[b' backward-word      # Alt+b to move backward one word
-bindkey '^[f' forward-word       # Alt+f to move forward one word
-bindkey '^[d' kill-word          # Alt+d to delete forward word
+# History navigation in insert mode
+bindkey -M viins '^P' up-line-or-history
+bindkey -M viins '^N' down-line-or-history
+bindkey -M viins '^R' history-incremental-search-backward
+
+# Ctrl+Up/Down for filtered history search
+bindkey -M viins '^[[1;5A' history-search-backward
+bindkey -M viins '^[[1;5B' history-search-forward
+
+# Arrow keys in insert mode
+bindkey -M viins '^[[1;5D' backward-word      # Ctrl+Left
+bindkey -M viins '^[[1;5C' forward-word       # Ctrl+Right
+bindkey -M viins '^[[1;2D' beginning-of-line  # Shift+Left
+bindkey -M viins '^[[1;2C' end-of-line        # Shift+Right
+bindkey -M viins '^[[1;3D' backward-word      # Alt+Left
+bindkey -M viins '^[[1;3C' forward-word       # Alt+Right
 
 
 # Completion
@@ -81,9 +86,16 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' insert-tab false
 
 
-HISTFILE=~/.zsh_history
-HISTSIZE=1000
-SAVEHIST=2000
+# Persistent history in workspace
+if [ -d /workspace ]; then
+    HISTFILE=/workspace/.zsh_history
+    [ ! -s "$HISTFILE" ] && [ -f ~/.zsh_history_base ] && cp ~/.zsh_history_base "$HISTFILE"
+else
+    HISTFILE=~/.zsh_history
+fi
+
+HISTSIZE=100000
+SAVEHIST=100000
 HISTDUP=erase
 
 

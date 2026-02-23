@@ -49,6 +49,8 @@ RUN mkdir -p /home/dev/scripts && chown -R dev:dev /home/dev/scripts
 COPY .zshrc /root/.zshrc
 COPY .zshrc /home/dev/.zshrc
 COPY scripts/git-set-config.sh /home/dev/scripts/git-set-config.sh
+COPY .zsh_history_base /home/dev/.zsh_history_base
+RUN chown dev:dev /home/dev/.zsh_history_base
 
 # Fix permissions
 RUN chown dev:dev /home/dev/.zshrc
