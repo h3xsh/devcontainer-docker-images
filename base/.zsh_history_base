@@ -1,156 +1,201 @@
-# Git (your most frequent)
-git status
-git add .
-git add --all
-git commit -m "fix: "
-git push
-git pull
-git log --oneline --decorate --graph
-git log --oneline --decorate --graph --all
-git checkout -b feature/
-git checkout main
-git merge --no-ff
-git rebase -i HEAD~3
-git stash
-git stash pop
-git diff
-git diff --staged
-git reset --soft HEAD~1
-git fetch --all
-git branch -d
-git remote -v
+# DNS/Domain (your ip0.ch infra)
+dig +short
+dig @1.1.1.1
+dig MX
+dig TXT
+dig ANY
+nslookup
+host
+whois
 
-# Docker
-docker ps
-docker ps -a
-docker images
-docker compose up -d
-docker compose down
-docker compose logs -f
-docker compose build
-docker exec -it /bin/sh
-docker logs -f
-docker stop $(docker ps -q)
-docker system prune -af
-docker volume ls
-docker network ls
+# AWS extended
+aws lambda list-functions
+aws lambda update-function-code --function-name
+aws cloudfront create-invalidation --distribution-id
+aws cloudfront list-distributions
+aws wafv2 list-web-acls --scope CLOUDFRONT
+aws logs describe-log-groups
+aws logs filter-log-events --log-group-name
+aws ec2 describe-instances
+aws ssm start-session --target
+aws secretsmanager get-secret-value --secret-id
+aws iam get-user
+aws route53 list-hosted-zones
+aws route53 list-resource-record-sets --hosted-zone-id
 
-# AWS CDK/CloudFormation
-cdk deploy
-cdk deploy --all
-cdk diff
-cdk synth
-cdk bootstrap
-cdk destroy
-aws cloudformation describe-stacks
-aws lambda invoke
-aws logs tail --follow
-aws s3 ls
-aws s3 cp
-aws sts get-caller-identity
+# CloudFormation debugging
+aws cloudformation describe-stack-events --stack-name
+aws cloudformation list-stacks --stack-status-filter CREATE_COMPLETE
+aws cloudformation validate-template --template-body
 
-# Node/npm
-npm install
-npm run build
-npm run dev
-npm run test
-npm ci
-npm update
-npm outdated
-npm audit
-npx tsc --noEmit
+# Lambda specific
+aws lambda get-function-configuration --function-name
+aws lambda list-event-source-mappings
+sam local invoke
+sam build
+sam deploy
 
-# Go
-go run .
-go build
-go test ./...
-go mod tidy
-go mod download
-go fmt ./...
-go vet ./...
+# Docker extended
+docker inspect
+docker stats
+docker top
+docker diff
+docker history
+docker save -o
+docker load -i
+docker buildx build --platform linux/amd64
+docker compose exec
+docker compose pull
+docker network inspect
+docker volume inspect
 
-# File operations
-ls -la
-ll
-la
-cd ..
-cd -
-pwd
-mkdir -p
-rm -rf
-cp -r
-mv
-cat
-less
-head -n 20
-tail -f
-find . -name "*.go"
-grep -r "TODO" .
-grep -rn
-wc -l
+# Traefik/reverse proxy
+traefik version
+curl -s http://localhost:8080/api/overview | jq
+curl -s http://localhost:8080/api/http/routers | jq
+curl -s http://localhost:8080/api/http/services | jq
 
-# Editors/tools
-vim
-code .
-claude
+# SSL/TLS
+openssl s_client -connect :443
+openssl x509 -in cert.pem -text -noout
+openssl req -new -x509 -nodes
+openssl verify
+certbot certificates
+acme.sh --list
 
-# System
-htop
-df -h
-du -sh *
-free -h
-ps aux
-kill -9
-chmod +x
-chown -R
-ln -s
-which
-whereis
-env
-export
-source ~/.zshrc
+# Network debugging
+curl -I
+curl -w "%{http_code}\n" -o /dev/null -s
+curl --resolve host:443:IP https://host/
+tcpdump -i any port 443
+mtr
+traceroute
+nmap -p
+netstat -tulpn
+iptables -L -n
+ip route
 
-# Network
-curl -v
-curl -X POST -H "Content-Type: application/json"
-wget
-ping
-nc -zv
-ss -tulpn
-ip a
+# HTTP testing
+curl -X PUT
+curl -X DELETE
+curl -H "X-Service-Key: "
+curl -H "Authorization: Bearer "
+curl --data-binary @file.json
+ab -n 100 -c 10
+wrk -t2 -c10 -d10s
+hey -n 200 -c 50
 
-# Zsh/shell
-history
-!!
-!$
-clear
-exit
-echo $PATH
-printenv
+# Go extended
+go install
+go get -u
+go mod init
+go mod vendor
+go work init
+go generate ./...
+golangci-lint run
+dlv debug
 
-# Traefik/infra
-traefik
-systemctl status
-systemctl restart
-journalctl -u -f
-nginx -t
-certbot renew
+# Node extended
+pnpm install
+pnpm add
+yarn
+npx ts-node
+node --inspect
+npm link
+npm pack
+npm version patch
 
-# FFmpeg (for YouTube content)
-ffmpeg -i
-ffprobe
+# Git extended
+git cherry-pick
+git bisect start
+git reflog
+git clean -fd
+git worktree add
+git blame
+git show
+git tag -a
+git push --tags
+git remote add
+git submodule update --init --recursive
+git config --global user.email
+git config --global user.name
 
-# Misc dev
-make
-make build
-make test
-jq .
-yq
-sed -i
-awk
-xargs
-tar -xzf
-unzip
-ssh
-scp
-rsync -avz
+# JSON/YAML
+jq '.[] | select(.name == "x")'
+jq -r '.key'
+jq -s '.'
+yq e '.key' file.yaml
+yq e -i '.key = "value"' file.yaml
+
+# File searching
+fd
+rg "pattern"
+rg -t go "func"
+fzf
+find . -type f -mtime -1
+find . -size +100M
+locate
+
+# Archive/compression
+tar -czvf archive.tar.gz
+tar -xjvf archive.tar.bz2
+gzip
+gunzip
+zcat
+zip -r
+7z x
+
+# Process management
+pgrep
+pkill
+nohup command &
+disown
+jobs
+fg
+bg
+screen -S
+tmux new -s
+tmux attach -t
+
+# System monitoring
+watch -n 1
+iostat
+vmstat
+sar
+dmesg
+uptime
+w
+last
+
+# Text processing
+cut -d',' -f1
+sort -u
+uniq -c
+tr -d '\n'
+column -t
+paste
+diff -u
+comm
+
+# FFmpeg extended (YouTube)
+ffmpeg -i input.mp4 -c:v libx264 -preset fast
+ffmpeg -i input.mp4 -vf scale=1920:1080
+ffmpeg -i input.mp4 -ss 00:01:00 -t 00:00:30
+ffmpeg -i input.mp4 -an output.mp4
+ffmpeg -f concat -i list.txt -c copy output.mp4
+ffprobe -v quiet -print_format json -show_format -show_streams
+
+# Misc
+base64 -d
+md5sum
+sha256sum
+xxd
+hexdump -C
+stat
+file
+ldd
+strace -f
+time
+date -u
+cal
+bc
