@@ -86,10 +86,14 @@ zstyle ':completion:*' accept-exact '*(N)'
 zstyle ':completion:*' insert-tab false
 
 
-# Persistent history in workspace
-if [ -d /workspace ]; then
-    HISTFILE=/workspace/.zsh_history
-    [ ! -s "$HISTFILE" ] && [ -f ~/.zsh_history_base ] && cp ~/.zsh_history_base "$HISTFILE"
+# Persistent history in workspaces
+if [ -d /workspaces ]; then
+    HISTFILE=/workspaces/.zsh_history
+    
+    if [ -f ~/.zsh_history_base ] && [ -z "$_HISTORY_BASE_MERGED" ]; then
+        cat ~/.zsh_history_base >> "$HISTFILE"
+        export _HISTORY_BASE_MERGED=1
+    fi
 else
     HISTFILE=~/.zsh_history
 fi
