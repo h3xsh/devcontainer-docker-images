@@ -56,6 +56,14 @@ RUN chown dev:dev /home/dev/.zsh_history_base
 RUN chown dev:dev /home/dev/.zshrc
 RUN chown dev:dev /home/dev/scripts/git-set-config.sh
 
+# 
+COPY .zshrc /etc/skel/.zshrc
+COPY scripts/git-set-config.sh /etc/skel/scripts/git-set-config.sh
+COPY .zsh_history_base /etc/skel/.zsh_history_base
+RUN chown -R root:root /etc/skel && \
+    chmod 755 /etc/skel /etc/skel/scripts && \
+    chmod 644 /etc/skel/.zshrc /etc/skel/scripts/git-set-config.sh /etc/skel/.zsh_history_base
+
 # Set zsh as default shell for root
 RUN chsh -s /usr/bin/zsh
 
