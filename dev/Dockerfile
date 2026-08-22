@@ -2,17 +2,16 @@ FROM h3xsh/image:base
 
 USER root
 
-# Node.js 24
-RUN curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg && \
-    echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_24.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list && \
-    apt-get update && apt-get install -y nodejs && \
+# Bun
+ENV BUN_INSTALL=/usr/local/bun
+ENV PATH=$BUN_INSTALL/bin:$PATH
+
+RUN apt-get update && apt-get install -y --no-install-recommends unzip && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
-    node --version && \
-    npm --version
-
-RUN npm install -g yarn && \
-    yarn --version
+    curl -fsSL https://bun.sh/install | bash && \
+    chown -R dev:dev "$BUN_INSTALL" && \
+    bun --version
 
 # Go
 ENV GO_VERSION=1.26.3
@@ -30,7 +29,17 @@ RUN mkdir -p "$GOPATH/src" "$GOPATH/bin" "$GOPATH/pkg" "$GOPATH/pkg/mod" \
 
 RUN go version
 
+# add vscode-server
+RUN mkdir -p /home/dev/.vscode-web \
+    && curl -fsSL -L "https://update.code.visualstudio.com/latest/server-linux-x64-web/stable" -o /tmp/vscode-web.tar.gz \
+    && tar -xzf /tmp/vscode-web.tar.gz -C /home/dev/.vscode-web --strip-components=1 \
+    && rm -f /tmp/vscode-web.tar.gz \
+    && chown -R dev:dev /home/dev/.vscode-web
+
 USER dev
 WORKDIR /home/dev
+
+# add claude code
+RUN curl -fsSL https://claude.ai/install.sh | bash
 
 CMD ["zsh"]
