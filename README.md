@@ -16,16 +16,12 @@ These are my personal collection of devcontainers Docker images for various prog
 ## PHP latest (8.4.5 + composers 2.8.8)
 - `h3xsh/image:php-84` - php 8.4 + composer 2.8.8
 
-## WIP/Experimental
-- `h3xsh/image:wip` - Testing and experimental builds (unstable)
-
 ## Folder Structure
 ```
 base/      # Base image
 nodejs-24/ # Node.js 24 image
 go/        # go 1.24.1 image
 php-84/    # php 8.4 + composer
-wip/       # experimental builds
 ```
 
 ## Usage
@@ -35,10 +31,9 @@ cd base && docker build -t h3xsh/image:base .
 cd nodejs-24 && docker build -t h3xsh/image:nodejs-24 .
 cd go && docker build -t h3xsh/image:go .
 cd php-84 && docker build -t h3xsh/image:php-84 .
-cd wip && docker build -t h3xsh/image:wip .
 
 # Run
-docker run -it --rm h3xsh/image:wip
+docker run -it --rm h3xsh/image:base
 ```
 
 ## Features
