@@ -8,8 +8,7 @@ These are my personal collection of devcontainers Docker images for various prog
 `h3xsh/image:base` - Debian bookworm-slim based development environment with git, curl, wget, vim, nano, zsh, network utilities, Apache Bench.
 
 ## Node Images *LTS*
-- `h3xsh/image:nodejs-20` - Node.js 20
-- `h3xsh/image:nodejs-22` - Node.js 22
+- `h3xsh/image:nodejs-24` - Node.js 24
 
 ## Go latest (1.24.1)
 - `h3xsh/image:go` - go 1.24.1
@@ -23,8 +22,7 @@ These are my personal collection of devcontainers Docker images for various prog
 ## Folder Structure
 ```
 base/      # Base image
-nodejs-20/ # Node.js 20 image
-nodejs-22/ # Node.js 22 image
+nodejs-24/ # Node.js 24 image
 go/        # go 1.24.1 image
 php-84/    # php 8.4 + composer
 wip/       # experimental builds
@@ -34,8 +32,7 @@ wip/       # experimental builds
 ```bash
 # Build
 cd base && docker build -t h3xsh/image:base .
-cd nodejs-20 && docker build -t h3xsh/image:nodejs-20 .
-cd nodejs-22 && docker build -t h3xsh/image:nodejs-22 .
+cd nodejs-24 && docker build -t h3xsh/image:nodejs-24 .
 cd go && docker build -t h3xsh/image:go .
 cd php-84 && docker build -t h3xsh/image:php-84 .
 cd wip && docker build -t h3xsh/image:wip .
