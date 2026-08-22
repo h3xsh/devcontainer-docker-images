@@ -33,8 +33,30 @@ RUN go version
 RUN mkdir -p /home/dev/.vscode-web \
     && curl -fsSL -L "https://update.code.visualstudio.com/latest/server-linux-x64-web/stable" -o /tmp/vscode-web.tar.gz \
     && tar -xzf /tmp/vscode-web.tar.gz -C /home/dev/.vscode-web --strip-components=1 \
-    && rm -f /tmp/vscode-web.tar.gz \
-    && chown -R dev:dev /home/dev/.vscode-web
+    && rm -f /tmp/vscode-web.tar.gz
+
+# pre-install vscode extension set
+
+RUN /home/dev/.vscode-web/bin/code-server serve-local \
+      --extensions-dir /home/dev/.vscode-web/extensions \
+      --server-data-dir /home/dev/.vscode-web/server-data \
+      --accept-server-license-terms \
+      --install-extension h3xsh.h3xsh-vscode-theme \
+      --install-extension eamodio.gitlens \
+      --install-extension aaron-bond.better-comments \
+      --install-extension mikestead.dotenv \
+      --install-extension redhat.vscode-yaml \
+      --install-extension dbaeumer.vscode-eslint \
+      --install-extension esbenp.prettier-vscode \
+      --install-extension Vue.volar \
+      --install-extension astro-build.astro-vscode \
+      --install-extension bradlc.vscode-tailwindcss \
+      --install-extension golang.go \
+      --install-extension vscode-icons-team.vscode-icons \
+      --install-extension oven.bun-vscode \
+      --install-extension streetsidesoftware.code-spell-checker
+
+RUN chown -R dev:dev /home/dev/.vscode-web
 
 USER dev
 WORKDIR /home/dev
